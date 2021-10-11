@@ -5,9 +5,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class DddKurlyCloneOrderApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
+    // request orders -> response check (MockMvc)
 
 }
