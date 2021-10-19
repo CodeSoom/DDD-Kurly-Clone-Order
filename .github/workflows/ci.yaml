@@ -32,6 +32,7 @@ jobs:
       with:
         host: ${{ secrets.DEPLOYMENT_HOST }}
         username: ${{ secrets.DEPLOYMENT_USERNAME }}
+        key: ${{ secrets.DEPLOYMENT_PRIVATE_KEY }}
         port: ${{ secrets.DEPLOYMENT_SSH_PORT }}
         script: echo "hello ec2 instance"
 
