@@ -1,6 +1,10 @@
 name: Java CI
 
-on: [push, pull_request]
+on: 
+  push: 
+    branches: [ main ] 
+  pull_request: 
+    branches: [ main ]
 
 jobs:
   build:
@@ -19,3 +23,15 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.DEPLOYMENT_HOST }}
+        username: ${{ secrets.DEPLOYMENT_USERNAME }}
+        port: ${{ secrets.DEPLOYMENT_SSH_PORT }}
+        script: echo "hello ec2 instance"
+
