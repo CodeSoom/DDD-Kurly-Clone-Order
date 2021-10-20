@@ -46,7 +46,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v0.1.4
         with:
