@@ -57,6 +57,8 @@ jobs:
           run: echo "ssh connection complete"
       - name: Pull image
         run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order:latest
+      - name: Tag container
+        run: docker tag {{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order:latest kurly-clone-order
       - name: Stop container
         run: docker stop kurly-clone-order
       - name: Restart container
