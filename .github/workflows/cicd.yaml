@@ -28,6 +28,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Login to Docker Hub
         uses: docker/login-action@v1.10.0
         with:
@@ -51,6 +52,7 @@ jobs:
     needs: upload
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v0.1.4
         with:
