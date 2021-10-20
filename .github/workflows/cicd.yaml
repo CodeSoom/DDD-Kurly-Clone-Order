@@ -23,12 +23,6 @@ jobs:
         run: ./gradlew build
       - name: Test with Gradle
         run: ./gradlew test
-
-  upload:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - name: Login to Docker Hub
         uses: docker/login-action@v1.10.0
         with:
@@ -49,7 +43,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
   deploy:
-    needs: upload
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
