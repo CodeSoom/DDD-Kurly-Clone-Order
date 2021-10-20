@@ -54,13 +54,12 @@ jobs:
           username: ${{ secrets.DEPLOYMENT_USERNAME }}
           key: ${{ secrets.DEPLOYMENT_PRIVATE_KEY }}
           port: ${{ secrets.DEPLOYMENT_SSH_PORT }}
-          run: echo "ssh connection complete"
-      - name: Pull image
-        run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order:latest
-      - name: Run container
-        run: docker run -d -p 8080:8080 --name backend --rm ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order
-      - name: Restart container
-        if: ${{ failure() }}
-        run: |
-          docker stop backend &&
-          docker run -d -p 8080:8080 --name backend --rm ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order
+          script: |
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order:latest
+            docker stop backend
+            docker run -d -p 8080:8080 --name backend --rm ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order
+#      - name: Restart container
+#        if: ${{ failure() }}
+#        run: |
+#          docker stop backend &&
+#          docker run -d -p 8080:8080 --name backend --rm ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order
