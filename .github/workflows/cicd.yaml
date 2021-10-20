@@ -54,7 +54,10 @@ jobs:
           username: ${{ secrets.DEPLOYMENT_USERNAME }}
           key: ${{ secrets.DEPLOYMENT_PRIVATE_KEY }}
           port: ${{ secrets.DEPLOYMENT_SSH_PORT }}
-          script: |
-            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order:latest
-            docker-compose -f docker-compose.prod.yaml down
-            docker-compose -f docker-compose.prod.yaml up
+          run: echo "ssh connection complete"
+      - name: Pull image
+        run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order:latest
+      - name: Stop container
+        run: docker stop server
+      - name: Restart container
+        run: docker run -d --rm --name backend -p 8080:8080 kurly-clone-order
