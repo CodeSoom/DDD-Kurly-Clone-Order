@@ -58,6 +58,6 @@ jobs:
       - name: Pull image
         run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/kurly-clone-order:latest
       - name: Stop container
-        run: docker stop server
+        run: docker stop kurly-clone-order
       - name: Restart container
         run: docker run -d --rm --name backend -p 8080:8080 kurly-clone-order
