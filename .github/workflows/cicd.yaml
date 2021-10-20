@@ -21,16 +21,11 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Test with Gradle
         run: ./gradlew test
 
   upload:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker Hub
