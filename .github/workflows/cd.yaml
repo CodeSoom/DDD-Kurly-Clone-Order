@@ -2,7 +2,7 @@ name: Kurly Clone Order CD
 
 on:
   release:
-    types: [published]
+    types: [released]
 
 jobs:
   upload:
