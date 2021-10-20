@@ -35,7 +35,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
   deploy:
-    needs: build
+    needs: upload
     runs-on: ubuntu-latest
     steps:
       - name: SSH Remote Commands
